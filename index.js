@@ -10,6 +10,9 @@ import uploadRoutes from "./routes/uploadRoutes.js";
 
 const app = express();
 
+// Vercel বা প্রডাকশন সার্ভারে Secure Cookie কাজ করার জন্য এটি অত্যাবশ্যক
+app.set("trust proxy", 1);
+
 const allowedOrigins = [
     "http://localhost:3000",
     "https://studiospace-client-git-main-sayed-cbee.vercel.app",
