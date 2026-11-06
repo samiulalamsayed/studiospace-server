@@ -13,6 +13,7 @@ const app = express();
 const allowedOrigins = [
     "http://localhost:3000",
     "https://studiospace-client-git-main-sayed-cbee.vercel.app",
+    "https://studiospace-client-smoky.vercel.app",
 ];
 
 app.use(
