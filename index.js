@@ -10,10 +10,9 @@ import uploadRoutes from "./routes/uploadRoutes.js";
 
 const app = express();
 
-// Middleware
 const allowedOrigins = [
     "http://localhost:3000",
-    process.env.CLIENT_URL,
+    "https://studiospace-client-git-main-sayed-cbee.vercel.app",
 ];
 
 app.use(
@@ -22,7 +21,7 @@ app.use(
             if (!origin || allowedOrigins.includes(origin)) {
                 callback(null, true);
             } else {
-                callback(new Error("Not allowed by CORS"));
+                callback(new Error(`CORS blocked: ${origin}`));
             }
         },
         credentials: true,
@@ -32,16 +31,13 @@ app.use(
 app.use(express.json());
 app.use(cookieParser());
 
-// Home Route
 app.get("/", (req, res) => {
     res.send("StudioSpace API is running!");
 });
 
-// API Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/studios", studioRoutes);
 app.use("/api/bookings", bookingRoutes);
 app.use("/api/upload", uploadRoutes);
 
-// Export Express App
 export default app;
